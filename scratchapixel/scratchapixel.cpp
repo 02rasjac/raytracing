@@ -1,12 +1,14 @@
 #include <iostream>
 
-#include "vec3.h"
+#include "Vec3.h"
+#include "Matrix44.h"
 
 int main() {
-    point3i intVec(1);
-    vec3f floVec(1.2f, -1.7f, 0.0f);
-    vec3d douVec1(1.0, 5.0, -2.0);
-    vec3d douVec2(2.0, 2.0, 3.0);
+    // Test vectors
+    Point3i intVec(1);
+    Vec3f floVec(1.2f, -1.7f, 0.0f);
+    Vec3d douVec1(1.0, 5.0, -2.0);
+    Vec3d douVec2(2.0, 2.0, 3.0);
 
     auto c1 = cross(douVec1, douVec2);
     auto c2 = douVec1.cross(douVec2);
@@ -20,4 +22,19 @@ int main() {
     std::cout << c1 << std::endl;
     std::cout << c2 << std::endl;
     std::cout << v1 << ' ' << v2 << ' ' << v3 << std::endl;
+
+    // Test matricies
+    Matrix44<int> mat1;
+    Matrix44<int> mat2;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            mat1[i][j] = i + j;
+            mat2[i][j] = 6 - i - j;
+        }
+    }
+    std::cout << mat1 << std::endl;
+    std::cout << mat2 << std::endl;
+
+    auto mult = mat1 * mat2;
+    std::cout << mult << std::endl;
 }
