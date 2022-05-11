@@ -57,6 +57,15 @@ public:
 		dst.y = src.x * m[0][1] + src.y * m[1][1] + src.z * m[2][1];
 		dst.z = src.x * m[0][2] + src.y * m[1][2] + src.z * m[2][2];
 	}
+	Matrix44<T> transpose() {
+		Matrix44<T> mat;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				mat[j][i] = m[i][j];
+			}
+		}
+		return mat;
+	}
 private:
 	T m[4][4] = { {1,0,0,0}, {0,1,0,0}, {0,0,1,0}, {0,0,0,1} }; // Initialise with identitymatrix
 };

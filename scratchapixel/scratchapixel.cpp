@@ -26,10 +26,11 @@ int main() {
     // Test matricies
     Matrix44<int> mat1;
     Matrix44<int> mat2;
+    auto counter = 0;
     for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            mat1[i][j] = i + j;
-            mat2[i][j] = 6 - i - j;
+        for (int j = 0; j < 4; j++, counter++) {
+            mat1[i][j] = counter;
+            mat2[i][j] = counter - j;
         }
     }
     std::cout << mat1 << std::endl;
@@ -37,4 +38,7 @@ int main() {
 
     auto mult = mat1 * mat2;
     std::cout << mult << std::endl;
+    
+    mat1 = mat1.transpose();
+    std::cout << mat1 << std::endl;
 }
